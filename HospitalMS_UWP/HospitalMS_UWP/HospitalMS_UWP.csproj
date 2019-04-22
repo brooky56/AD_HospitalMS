@@ -123,13 +123,21 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DatabaseManager.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="IntroPage.xaml.cs">
       <DependentUpon>IntroPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JSONConverters\JsonCreationConverter.cs" />
+    <Compile Include="JSONConverters\UserJsonConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +147,24 @@
     <Compile Include="ManageData.xaml.cs">
       <DependentUpon>ManageData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authentication\ChangePasswordRequest.cs" />
+    <Compile Include="Models\Authentication\DeleteUserRequest.cs" />
+    <Compile Include="Models\Authentication\ResetPasswordRequest.cs" />
+    <Compile Include="Models\Authentication\SignInRequest.cs" />
+    <Compile Include="Models\Authentication\SignUpRequest.cs" />
+    <Compile Include="Models\Database\Appointment.cs" />
+    <Compile Include="Models\Database\Credential.cs" />
+    <Compile Include="Models\Database\DatabaseModel.cs" />
+    <Compile Include="Models\Database\Doctor.cs" />
+    <Compile Include="Models\Database\Medicine.cs" />
+    <Compile Include="Models\Database\Patient.cs" />
+    <Compile Include="Models\Database\Room.cs" />
+    <Compile Include="Models\Database\Staff.cs" />
+    <Compile Include="Models\Database\Test.cs" />
+    <Compile Include="Models\Database\TimeSlot.cs" />
+    <Compile Include="Models\Database\User.cs" />
+    <Compile Include="Models\Database\UserType.cs" />
+    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="MonitorPage.xaml.cs">
       <DependentUpon>MonitorPage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +221,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ArangoDB.Client">
+      <Version>0.7.70</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
