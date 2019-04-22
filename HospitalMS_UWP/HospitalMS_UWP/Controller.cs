@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+using Windows.UI.Xaml.Controls;
 
-namespace HospitalMS
+namespace HospitalMS_UWP
 {
     class Controller
     {
@@ -14,13 +13,13 @@ namespace HospitalMS
         {
            
         }
-        public void CheckNumericValuesTextBox(TextBox textBox) {
+        public void CheckNumericValuesTextBox(TextBox textBox)
+        {
             foreach (char c in textBox.Text.ToCharArray())
             {
                 if (!char.IsDigit(c))
                 {
-                    MessageBox.Show("This textbox accepts only numbers.");
-                    textBox.Clear();
+                    textBox.Text = "";
                     break;
                 }
             }
@@ -34,8 +33,7 @@ namespace HospitalMS
             }
             else
             {
-                MessageBox.Show("Such character is not available.");
-                passwordBox.Clear();
+                passwordBox.Password = "";
             }
             return flag;
         }
@@ -63,9 +61,11 @@ namespace HospitalMS
             if (textBox.Text.Length != 0)
                 if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^[a-zA-Z]"))
                 {
-                    MessageBox.Show("Accepts only Latin characters.");
-                    textBox.Clear();
+                   
+                    textBox.Text ="";
                 }
         }
+
     }
+
 }
