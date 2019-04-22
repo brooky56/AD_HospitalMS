@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+using Windows.UI.Xaml.Controls;
 
-namespace HospitalMS
+namespace HospitalMS_UWP
 {
     class Controller
     {
-        MainWindow mainWindow;
-        public Controller(MainWindow main)
+        public Controller()
         {
-            mainWindow = main;
+           
         }
         public void CheckNumericValuesTextBox(TextBox textBox)
         {
@@ -21,8 +19,7 @@ namespace HospitalMS
             {
                 if (!char.IsDigit(c))
                 {
-                    mainWindow.MessageErrorHandler("NumericError");
-                    textBox.Clear();
+                    textBox.Text = "";
                     break;
                 }
             }
@@ -36,8 +33,7 @@ namespace HospitalMS
             }
             else
             {
-                mainWindow.MessageErrorHandler("CharError");
-                passwordBox.Clear();
+                passwordBox.Password = "";
             }
             return flag;
         }
@@ -65,10 +61,11 @@ namespace HospitalMS
             if (textBox.Text.Length != 0)
                 if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^[a-zA-Z]"))
                 {
-                    mainWindow.MessageErrorHandler("LiteralError");
-                    textBox.Clear();
+                   
+                    textBox.Text ="";
                 }
         }
 
     }
+
 }

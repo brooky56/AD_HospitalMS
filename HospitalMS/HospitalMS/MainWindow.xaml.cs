@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,7 @@ namespace HospitalMS
         public MainWindow()
         {
             InitializeComponent();
-            controller = new Controller();
+            controller = new Controller(this);
         }
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
@@ -35,7 +36,7 @@ namespace HospitalMS
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             LogInStackPanel.Visibility = Visibility.Hidden;
-            this.Title = "Sign Up"; 
+            this.Title = "Sign Up";
             SignUpStackPanel.Visibility = Visibility.Visible;
         }
 
@@ -50,5 +51,23 @@ namespace HospitalMS
         {
             controller.CheckLiteralValuesTextBox(LoginTextBox);
         }
+
+        /* public void MessageErrorHandler(String error)
+         {
+             switch (error)
+             {
+                 case "LiteralError":        
+                     WarningSnackbarLiteral.IsActive = true;           
+                     break;
+                 case "CharError":
+                     WarningSnackbarChar.IsActive = true;
+                     break;
+                 case "NumericError":
+                     WarningSnackbarNumeric.IsActive = true;
+                     break;
+             }
+         }*/
+
+
     }
 }

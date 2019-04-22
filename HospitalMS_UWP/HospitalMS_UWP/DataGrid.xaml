@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="HospitalMS_UWP.DataGrid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HospitalMS_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White">
+        <controls:DataGrid x:Name="WorkDataGrid" HorizontalAlignment="Left" Loaded="DataGrid_Loaded" Margin="312,0,0,0" VerticalAlignment="Center" Height="380" Width="577" Background="#FF80BC00"/>
+    </Grid>
+</Page>
