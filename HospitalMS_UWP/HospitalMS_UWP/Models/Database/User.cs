@@ -4,6 +4,7 @@ using HospitalMS_UWP.Models.Authentication;
 using HospitalMS_UWP.Models.JSONConverters;
 using HospitalMS_UWP.Models.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,14 +60,55 @@ namespace HospitalMS_UWP.Models.Database
             return databaseManager.Database.Query<User>().ToList();
         }
 
-        public static MessageResponse AddUser(DatabaseManager databaseManager, User user)
+        public static MessageResponse AddUser(DatabaseManager databaseManager, EncryptionHelper encryptionHelper, SignUpRequest request)
         {
-            if (IsInDB(databaseManager, user.Key))
+            if (request == null || request.IsInvalid() || request.User.IsInvalid())
             {
-                return new MessageResponse("User already exists");
+                return new MessageResponse("Wrong data");
             }
-            user.InsertIntoDB(databaseManager);
-            return new MessageResponse("User added");
+
+            if (User.GetByEmailFromDB(databaseManager, request.User.Email) != null)
+            {
+                return new MessageResponse("This email already registered");
+            }
+
+            if (request.User.UserType == Database.UserType.ADMIN)
+            {
+                return new MessageResponse("Security violation");
+            }
+
+
+            if (!request.User.IsVerified)
+            {                
+                request.User.VerificationLink = EmailHelper.GetRandomVerificationLink();
+
+                try
+                {
+                    EmailHelper.SendVerificationEmail(request.User.Email, request.User.VerificationLink);
+                }
+                catch (Exception ex)
+                {
+                    return new MessageResponse(ex.Message);
+                }
+            }
+
+            databaseManager.Database.Insert<User>(request.User);            
+
+            Credential credentials = new Credential();
+
+            try
+            {
+                credentials.Key = Credential.GetLoginFromName(databaseManager, request.User.Name);
+            }
+            catch (ArgumentException)
+            {
+                return new MessageResponse("Wrong name format");
+            }
+
+            credentials.PasswordHash = encryptionHelper.GetHash(request.Password);
+            databaseManager.Database.Insert<Credential>(credentials);
+
+            return new MessageResponse("Registered");
         }
 
         public static MessageResponse EditUser(DatabaseManager databaseManager, User user)
@@ -79,7 +121,7 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such user");
         }
 
-        public MessageResponse DeleteUser(DatabaseManager databaseManager, DeleteUserRequest request)
+        public static MessageResponse DeleteUser(DatabaseManager databaseManager, DeleteUserRequest request)
         {
             if (IsInDB(databaseManager, request.Key))
             {
