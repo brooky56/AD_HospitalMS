@@ -9,7 +9,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="White">
-        <controls:DataGrid x:Name="WorkDataGrid" HorizontalAlignment="Left" Loaded="DataGrid_Loaded" Margin="312,0,0,0" VerticalAlignment="Center" Height="380" Width="577" Background="#FF80BC00"/>
+    <Grid x:Name="MainGrid" Background="White">
+        <controls:DataGrid x:Name="WorkDataGrid" HorizontalAlignment="Left" Loaded="DataGrid_Loaded" Margin="210,0,0,0" VerticalAlignment="Center" Height="369" Width="914" Background="#FF80BC00" SelectionChanged="WorkDataGrid_SelectionChanged"/>
+        <ComboBox x:Name="UserTypeBox" HorizontalAlignment="Center" VerticalAlignment="Top" Height="59" Width="314" Margin="0,53,0,0" Background="#FF80BC00">
+            <ComboBoxItem Content="Doctors"/>
+            <ComboBoxItem Content="Pharmacists"/>
+            <ComboBoxItem Content="Patients"/>
+            <ComboBoxItem Content="All users"/>
+            <ComboBoxItem Content="Nurses"/>
+            <ComboBoxItem Content="Laboratorists"/>
+            <ComboBoxItem Content="Reseptionist"/>
+            <ComboBoxItem Content="Accountants"/>
+        </ComboBox>
     </Grid>
 </Page>

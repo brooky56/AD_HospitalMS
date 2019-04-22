@@ -26,8 +26,6 @@ namespace HospitalMS_UWP
         public DataGrid()
         {
             this.InitializeComponent();
-           
-            
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -36,6 +34,21 @@ namespace HospitalMS_UWP
             result.Clear();
             result = Customer.Customers();
             WorkDataGrid.ItemsSource = result;
+        }
+
+        private async void WorkDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string str = UserTypeBox.SelectionBoxItem.ToString();
+            string str1 = WorkDataGrid.SelectedItem.ToString();
+            ContentDialog deleteFileDialog = new ContentDialog()
+            {
+                Title = str,
+                Content = str1,
+                PrimaryButtonText = "ОК",
+                SecondaryButtonText = "Отмена"
+            };
+
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
         }
     }
 }
