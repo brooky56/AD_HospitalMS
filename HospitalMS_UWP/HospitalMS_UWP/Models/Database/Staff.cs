@@ -25,10 +25,5 @@ namespace HospitalMS_UWP.Models.Database
         {
             return databaseManager.Database.Query<Staff>().Where(s => s.UserType != Database.UserType.PATIENT);
         }
-
-        public static IEnumerable<Staff> GetStaff(DatabaseManager databaseManager, string key)
-        {
-            return databaseManager.Database.Query<Staff>().Where(s => s.Key == key);
-        }
     }
 }

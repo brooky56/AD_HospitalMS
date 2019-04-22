@@ -1,4 +1,8 @@
 ﻿using ArangoDB.Client;
+using HospitalMS_UWP.Helpers;
+using HospitalMS_UWP.Models.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HospitalMS_UWP.Models.Database
 {
@@ -9,5 +13,50 @@ namespace HospitalMS_UWP.Models.Database
         public float Price { get; set; }        
         public string ExpirationDate { get; set; }
         public int Amount { get; set; }
+
+        public static bool IsInDB(DatabaseManager databaseManager, string key)
+        {
+            return databaseManager.Database.Query<Medicine>().Where(u => u.Key == key).Count() > 0;
+        }
+
+        public void InsertIntoDB(DatabaseManager databaseManager)
+        {
+            databaseManager.Database.Insert<Medicine>(this);
+        }
+
+        public void UpdateInDB(DatabaseManager databaseManager)
+        {
+            databaseManager.Database.Update<Medicine>(this);
+        }
+
+        public MessageResponse AddMedicine(DatabaseManager databaseManager)
+        {
+            if (IsInDB(databaseManager, Key))
+            {
+                return new MessageResponse("Medicine already exists");
+            }
+            InsertIntoDB(databaseManager);
+            return new MessageResponse("Medicine added");
+        }
+
+        public MessageResponse EditMedicine(DatabaseManager databaseManager)
+        {
+            if (IsInDB(databaseManager, Key))
+            {
+                UpdateInDB(databaseManager);
+                return new MessageResponse("Medicine updated");
+            }
+            return new MessageResponse("There is no such medicine");
+        }
+
+        public static IEnumerable<Medicine> GetAllMedicines(DatabaseManager databaseManager)
+        {
+            return databaseManager.Database.Query<Medicine>();
+        }
+
+        public static IEnumerable<Medicine> GetMedicine(DatabaseManager databaseManager, string key)
+        {
+            return databaseManager.Database.Query<Medicine>().Where(s => s.Key == key);
+        }
     }
 }

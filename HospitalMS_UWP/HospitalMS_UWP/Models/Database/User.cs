@@ -55,11 +55,6 @@ namespace HospitalMS_UWP.Models.Database
             return databaseManager.Database.Query<User>().FirstOrDefault(u => u.VerificationLink == link);
         }
 
-        public static IEnumerable<User> GetAllUsers(DatabaseManager databaseManager)
-        {
-            return databaseManager.Database.Query<User>().ToList();
-        }
-
         public static MessageResponse AddUser(DatabaseManager databaseManager, EncryptionHelper encryptionHelper, SignUpRequest request)
         {
             if (request == null || request.IsInvalid() || request.User.IsInvalid())
@@ -111,7 +106,7 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("Registered");
         }
 
-        public static MessageResponse EditUser(DatabaseManager databaseManager, User user)
+        public static MessageResponse EditUser(User user, DatabaseManager databaseManager)
         {
             if (IsInDB(databaseManager, user.Key))
             {
@@ -129,6 +124,16 @@ namespace HospitalMS_UWP.Models.Database
                 return new MessageResponse("User removed");
             }
             return new MessageResponse("There is no such user");
+        }
+
+        public static IEnumerable<User> GetAllUsers(DatabaseManager databaseManager)
+        {
+            return databaseManager.Database.Query<User>();
+        }
+
+        public static IEnumerable<User> GetUser(DatabaseManager databaseManager, string key)
+        {
+            return databaseManager.Database.Query<User>().Where(s => s.Key == key);
         }
     }
 }

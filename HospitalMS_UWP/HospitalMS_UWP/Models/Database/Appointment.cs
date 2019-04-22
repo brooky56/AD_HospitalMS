@@ -50,14 +50,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such appointment");
         }
 
-        public static IEnumerable<Appointment> GetAppointment(DatabaseManager databaseManager, string key)
-        {
-            return databaseManager.Database.Query<Appointment>().Where(s => s.Key == key);
-        }
-
         public static IEnumerable<Appointment> GetAllAppointments(DatabaseManager databaseManager)
         {
             return databaseManager.Database.Query<Appointment>();
+        }
+
+        public static IEnumerable<Appointment> GetAppointment(DatabaseManager databaseManager, string key)
+        {
+            return databaseManager.Database.Query<Appointment>().Where(s => s.Key == key);
         }
     }
 }
