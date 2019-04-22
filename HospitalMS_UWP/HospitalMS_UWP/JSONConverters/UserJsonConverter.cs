@@ -17,6 +17,10 @@ namespace HospitalMS_UWP.Models.JSONConverters
             {
                 return new Patient();
             }
+            else if (jObject["UserType"].ToString() == UserType.DOCTOR)
+            {
+                return new Doctor();
+            }
             else
             {
                 return new Staff();

@@ -124,7 +124,11 @@
     </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\TestTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DataGrid.xaml.cs">
@@ -156,12 +160,14 @@
     <Compile Include="Models\Database\Credential.cs" />
     <Compile Include="Models\Database\DatabaseModel.cs" />
     <Compile Include="Models\Database\Doctor.cs" />
+    <Compile Include="Models\Database\EdgeDatabaseModel.cs" />
     <Compile Include="Models\Database\Medicine.cs" />
     <Compile Include="Models\Database\Patient.cs" />
+    <Compile Include="Models\Database\Payment.cs" />
     <Compile Include="Models\Database\Room.cs" />
     <Compile Include="Models\Database\Staff.cs" />
     <Compile Include="Models\Database\Test.cs" />
-    <Compile Include="Models\Database\TimeSlot.cs" />
+    <Compile Include="Models\Database\TestType.cs" />
     <Compile Include="Models\Database\User.cs" />
     <Compile Include="Models\Database\UserType.cs" />
     <Compile Include="Models\MessageResponse.cs" />

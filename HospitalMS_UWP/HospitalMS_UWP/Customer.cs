@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalMS_UWP
 {
- 
-        public class Customer
+
+    public class Customer
         {
             public String FirstName { get; set; }
             public String LastName { get; set; }

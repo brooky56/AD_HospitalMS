@@ -1,7 +1,10 @@
 ﻿using ArangoDB.Client;
 using HospitalMS_UWP.Helpers;
+using HospitalMS_UWP.Models.Authentication;
 using HospitalMS_UWP.Models.JSONConverters;
+using HospitalMS_UWP.Models.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HospitalMS_UWP.Models.Database
@@ -25,6 +28,7 @@ namespace HospitalMS_UWP.Models.Database
         public char Gender { get; set; }
         public string PhotoLink { get; set; }
         public string UserType { get; set; }
+
         public abstract void InsertIntoDB(DatabaseManager databaseManager);
         public abstract void UpdateInDB(DatabaseManager databaseManager);
 
@@ -48,6 +52,41 @@ namespace HospitalMS_UWP.Models.Database
         public static User GetByVerificationLinkFromDB(DatabaseManager databaseManager, string link)
         {
             return databaseManager.Database.Query<User>().FirstOrDefault(u => u.VerificationLink == link);
+        }
+
+        public static IEnumerable<User> GetAllUsers(DatabaseManager databaseManager)
+        {
+            return databaseManager.Database.Query<User>().ToList();
+        }
+
+        public static MessageResponse AddUser(DatabaseManager databaseManager, User user)
+        {
+            if (IsInDB(databaseManager, user.Key))
+            {
+                return new MessageResponse("User already exists");
+            }
+            user.InsertIntoDB(databaseManager);
+            return new MessageResponse("User added");
+        }
+
+        public static MessageResponse EditUser(DatabaseManager databaseManager, User user)
+        {
+            if (IsInDB(databaseManager, user.Key))
+            {
+                user.UpdateInDB(databaseManager);
+                return new MessageResponse("User updated");
+            }
+            return new MessageResponse("There is no such user");
+        }
+
+        public MessageResponse DeleteUser(DatabaseManager databaseManager, DeleteUserRequest request)
+        {
+            if (IsInDB(databaseManager, request.Key))
+            {
+                databaseManager.Database.RemoveById<User>(request.Key);
+                return new MessageResponse("User removed");
+            }
+            return new MessageResponse("There is no such user");
         }
     }
 }

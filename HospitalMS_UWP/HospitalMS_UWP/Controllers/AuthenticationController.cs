@@ -8,15 +8,12 @@ using System.Linq;
 
 namespace HospitalMS_UWP.Controllers
 {
-    public class AuthenticationController
+    public class AuthenticationController: DatabaseController
     {
-        private DatabaseManager databaseManager;
-
         private EncryptionHelper encryptionHelper;
 
         public AuthenticationController()
         {
-            databaseManager = new DatabaseManager();
             encryptionHelper = new EncryptionHelper();
         }
         
