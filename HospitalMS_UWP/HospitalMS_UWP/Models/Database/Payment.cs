@@ -34,14 +34,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("Payment added");
         }
 
-        public static IEnumerable<Payment> GetAllPayments(DatabaseManager databaseManager)
+        public static List<Payment> GetAllPayments(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Payment>();
+            return databaseManager.Database.Query<Payment>().ToList();
         }
 
-        public static IEnumerable<Payment> GetPayment(DatabaseManager databaseManager, string key)
+        public static Payment GetPayment(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<Payment>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<Payment>().Where(s => s.Key == key).ToList().First();
         }
-    }    
+    }
 }

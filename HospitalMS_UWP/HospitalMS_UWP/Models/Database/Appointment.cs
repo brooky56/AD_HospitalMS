@@ -3,6 +3,7 @@ using HospitalMS_UWP.Helpers;
 using HospitalMS_UWP.Models.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace HospitalMS_UWP.Models.Database
 {
@@ -50,14 +51,21 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such appointment");
         }
 
-        public static IEnumerable<Appointment> GetAllAppointments(DatabaseManager databaseManager)
+        public static List<Appointment> GetAllAppointments(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Appointment>();
+            return databaseManager.Database.Query<Appointment>().ToList();
         }
 
-        public static IEnumerable<Appointment> GetAppointment(DatabaseManager databaseManager, string key)
+        public static Appointment GetAppointment(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<Appointment>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<Appointment>().Where(s => s.Key == key).ToList().First();
+        }
+
+        public static List<Appointment> GetApprovedAppointmentsByDateAndTime(DatabaseManager databaseManager, string date, string time, int minutesgap)
+        {
+            DateTime datetime = Common.GetTimeFromString(time);
+            return databaseManager.Database.Query<Appointment>().
+                Where(s => s.IsApproved && s.Date == date && Math.Abs((datetime - Common.GetTimeFromString(s.Time)).Minutes) <= minutesgap).ToList();
         }
     }
 }

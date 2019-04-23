@@ -7,11 +7,11 @@ using System.Linq;
 namespace HospitalMS_UWP.Models.Database
 {
     [CollectionProperty(CollectionName = "Test", Naming = NamingConvention.UnChanged)]
-    public class Test: EdgeDatabaseModel
+    public class Test : EdgeDatabaseModel
     {
         public string AppointmentKey { get; set; }
-	    public string LaboratoristKey { get; set; }
-	    public string DateTime { get; set; }
+        public string LaboratoristKey { get; set; }
+        public string DateTime { get; set; }
         public string ReportURL { get; set; }
 
         public static bool IsInDB(DatabaseManager databaseManager, string key)
@@ -49,14 +49,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such test");
         }
 
-        public static IEnumerable<Test> GetAllTests(DatabaseManager databaseManager)
+        public static List<Test> GetAllTests(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Test>();
+            return databaseManager.Database.Query<Test>().ToList();
         }
 
-        public static IEnumerable<Test> GetTest(DatabaseManager databaseManager, string key)
+        public static Test GetTest(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<Test>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<Test>().Where(s => s.Key == key).ToList().First();
         }
     }
 }

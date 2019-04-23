@@ -7,10 +7,10 @@ using System.Linq;
 namespace HospitalMS_UWP.Models.Database
 {
     [CollectionProperty(CollectionName = "Medicine", Naming = NamingConvention.UnChanged)]
-    public class Medicine: DatabaseModel
+    public class Medicine : DatabaseModel
     {
         public string Title { get; set; }
-        public float Price { get; set; }        
+        public float Price { get; set; }
         public string ExpirationDate { get; set; }
         public int Amount { get; set; }
 
@@ -49,16 +49,6 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such medicine");
         }
 
-        public static IEnumerable<Medicine> GetAllMedicines(DatabaseManager databaseManager)
-        {
-            return databaseManager.Database.Query<Medicine>();
-        }
-
-        public static IEnumerable<Medicine> GetMedicine(DatabaseManager databaseManager, string key)
-        {
-            return databaseManager.Database.Query<Medicine>().Where(s => s.Key == key);
-        }
-
         public static MessageResponse DeleteMedicine(DatabaseManager databaseManager, string key)
         {
             if (!IsInDB(databaseManager, key))
@@ -67,6 +57,16 @@ namespace HospitalMS_UWP.Models.Database
             }
             databaseManager.Database.RemoveById<Medicine>(key);
             return new MessageResponse("Medicine removed");
+        }
+
+        public static List<Medicine> GetAllMedicines(DatabaseManager databaseManager)
+        {
+            return databaseManager.Database.Query<Medicine>().ToList();
+        }
+
+        public static Medicine GetMedicine(DatabaseManager databaseManager, string key)
+        {
+            return databaseManager.Database.Query<Medicine>().Where(s => s.Key == key).ToList().First();
         }
     }
 }

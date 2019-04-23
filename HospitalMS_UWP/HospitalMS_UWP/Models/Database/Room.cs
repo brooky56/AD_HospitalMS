@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace HospitalMS_UWP.Models.Database
 {
-    public class Room: DatabaseModel
+    public class Room : DatabaseModel
     {
         public string Type { get; set; }
         public string[] Nurses { get; set; }
@@ -45,14 +45,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such room");
         }
 
-        public static IEnumerable<Room> GetAllRooms(DatabaseManager databaseManager)
+        public static List<Room> GetAllRooms(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Room>();
+            return databaseManager.Database.Query<Room>().ToList();
         }
 
-        public static IEnumerable<Room> GetRoom(DatabaseManager databaseManager, string key)
+        public static Room GetRoom(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<Room>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<Room>().Where(s => s.Key == key).ToList().First();
         }
     }
 }

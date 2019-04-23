@@ -12,13 +12,13 @@ namespace HospitalMS_UWP.Models.Database
 {
     [JsonConverter(typeof(UserJsonConverter))]
     [CollectionProperty(CollectionName = "User", Naming = NamingConvention.UnChanged)]
-    public abstract class User: DatabaseModel
+    public abstract class User : DatabaseModel
     {
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public bool IsVerified { get; set; }
-        public string VerificationLink { get; set; }        
+        public string VerificationLink { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
@@ -74,7 +74,7 @@ namespace HospitalMS_UWP.Models.Database
 
 
             if (!request.User.IsVerified)
-            {                
+            {
                 request.User.VerificationLink = EmailHelper.GetRandomVerificationLink();
 
                 try
@@ -87,7 +87,7 @@ namespace HospitalMS_UWP.Models.Database
                 }
             }
 
-            databaseManager.Database.Insert<User>(request.User);            
+            databaseManager.Database.Insert<User>(request.User);
 
             Credential credentials = new Credential();
 
@@ -126,14 +126,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such user");
         }
 
-        public static IEnumerable<User> GetAllUsers(DatabaseManager databaseManager)
+        public static List<User> GetAllUsers(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<User>();
+            return databaseManager.Database.Query<User>().ToList();
         }
 
-        public static IEnumerable<User> GetUser(DatabaseManager databaseManager, string key)
+        public static User GetUser(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<User>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<User>().Where(s => s.Key == key).ToList().First();
         }
     }
 }
