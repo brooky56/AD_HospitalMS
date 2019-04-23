@@ -66,7 +66,7 @@ namespace HospitalMS_UWP
             string date = data.Substring(0,k);
             string time = data.Substring(k+1);
             int minutesgap = Int32.Parse(TimeGapTextBox.Text);*/
-            Common.GetAllFreeRoomsByDateAndTime(databaseManager,"2019-05-01", "12:00", 30);
+            List<Room> rooms = Room.GetAllFreeRoomsByDateAndTime(databaseManager,"2019-05-01", "12:00", 30);
             //string cpy = date;
 
             
