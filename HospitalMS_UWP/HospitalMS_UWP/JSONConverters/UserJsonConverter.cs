@@ -4,7 +4,7 @@ using System;
 
 namespace HospitalMS_UWP.Models.JSONConverters
 {
-    public class UserJsonConverter: JsonCreationConverter<User>
+    public class UserJsonConverter : JsonCreationConverter<User>
     {
         protected override User Create(Type objectType, JObject jObject)
         {
@@ -13,18 +13,16 @@ namespace HospitalMS_UWP.Models.JSONConverters
                 throw new ArgumentNullException("jObject");
             }
 
-            if (jObject["UserType"].ToString() == UserType.PATIENT)
+            string type = jObject["UserType"].ToString();
+            if (type == UserType.PATIENT)
             {
                 return new Patient();
             }
-            else if (jObject["UserType"].ToString() == UserType.DOCTOR)
+            if (type == UserType.DOCTOR)
             {
                 return new Doctor();
             }
-            else
-            {
-                return new Staff();
-            }
+            return new Staff();
         }
     }
 }

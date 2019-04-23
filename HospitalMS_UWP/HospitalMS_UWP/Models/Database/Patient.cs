@@ -1,5 +1,7 @@
 ﻿using ArangoDB.Client;
 using HospitalMS_UWP.Helpers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HospitalMS_UWP.Models.Database
 {
@@ -17,6 +19,11 @@ namespace HospitalMS_UWP.Models.Database
         public override void UpdateInDB(DatabaseManager databaseManager)
         {
             databaseManager.Database.Update<Patient>(this);
+        }
+
+        public static IEnumerable<Patient> GetAllPatients(DatabaseManager databaseManager)
+        {
+            return databaseManager.Database.Query<Patient>().Where(s => s.UserType == Database.UserType.PATIENT);
         }
     }
 }
