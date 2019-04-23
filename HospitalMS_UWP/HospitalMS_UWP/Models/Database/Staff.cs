@@ -21,9 +21,9 @@ namespace HospitalMS_UWP.Models.Database
             databaseManager.Database.Update<Staff>(this);
         }
 
-        public static IEnumerable<Staff> GetAllStaff(DatabaseManager databaseManager)
+        public static List<Staff> GetAllStaff(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Staff>().Where(s => s.UserType != Database.UserType.PATIENT);
+            return databaseManager.Database.Query<Staff>().Where(s => s.UserType != Database.UserType.PATIENT).ToList();
         }
     }
 }

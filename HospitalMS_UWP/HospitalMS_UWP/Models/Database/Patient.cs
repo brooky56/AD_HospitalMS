@@ -9,7 +9,7 @@ namespace HospitalMS_UWP.Models.Database
     public class Patient : User
     {
         public float Height { get; set; }
-        public float Weight { get; set; }        
+        public float Weight { get; set; }
 
         public override void InsertIntoDB(DatabaseManager databaseManager)
         {
@@ -21,9 +21,9 @@ namespace HospitalMS_UWP.Models.Database
             databaseManager.Database.Update<Patient>(this);
         }
 
-        public static IEnumerable<Patient> GetAllPatients(DatabaseManager databaseManager)
+        public static List<Patient> GetAllPatients(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<Patient>().Where(s => s.UserType == Database.UserType.PATIENT);
+            return databaseManager.Database.Query<Patient>().Where(s => s.UserType == Database.UserType.PATIENT).ToList();
         }
     }
 }

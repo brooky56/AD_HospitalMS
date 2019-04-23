@@ -7,7 +7,7 @@ using System.Linq;
 namespace HospitalMS_UWP.Models.Database
 {
     [CollectionProperty(CollectionName = "TestType", Naming = NamingConvention.UnChanged)]
-    public class TestType: DatabaseModel
+    public class TestType : DatabaseModel
     {
         public string Title { get; set; }
         public string TemplateURL { get; set; }
@@ -47,14 +47,14 @@ namespace HospitalMS_UWP.Models.Database
             return new MessageResponse("There is no such test type");
         }
 
-        public static IEnumerable<TestType> GetAllTestTypes(DatabaseManager databaseManager)
+        public static List<TestType> GetAllTestTypes(DatabaseManager databaseManager)
         {
-            return databaseManager.Database.Query<TestType>();
+            return databaseManager.Database.Query<TestType>().ToList();
         }
 
-        public static IEnumerable<TestType> GetTestType(DatabaseManager databaseManager, string key)
+        public static TestType GetTestType(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<TestType>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<TestType>().Where(s => s.Key == key).ToList().First();
         }
     }
 }

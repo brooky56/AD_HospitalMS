@@ -2,7 +2,7 @@
 
 namespace HospitalMS_UWP.Models.Database
 {
-    public abstract class EdgeDatabaseModel: DatabaseModel
+    public abstract class EdgeDatabaseModel : DatabaseModel
     {
         [DocumentProperty(Identifier = IdentifierType.EdgeFrom)]
         public string From { get; set; }

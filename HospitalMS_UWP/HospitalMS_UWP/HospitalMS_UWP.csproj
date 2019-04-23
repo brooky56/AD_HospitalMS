@@ -150,6 +150,7 @@
     <Compile Include="Models\Authentication\SignInRequest.cs" />
     <Compile Include="Models\Authentication\SignUpRequest.cs" />
     <Compile Include="Models\Database\Appointment.cs" />
+    <Compile Include="Models\Database\Common.cs" />
     <Compile Include="Models\Database\Credential.cs" />
     <Compile Include="Models\Database\DatabaseModel.cs" />
     <Compile Include="Models\Database\Doctor.cs" />

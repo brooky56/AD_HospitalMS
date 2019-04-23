@@ -61,14 +61,17 @@ namespace HospitalMS_UWP
 
         private void ShowFreeRoomsButton_Click(object sender, RoutedEventArgs e)
         {
-            string data = DateRoomTextBox.Text;
-            List<Room> roomsAvailable = new List<Room>();
+            /*string data = DateRoomTextBox.Text;
+            int k = data.IndexOf(" ");
+            string date = data.Substring(0,k);
+            string time = data.Substring(k+1);
+            int minutesgap = Int32.Parse(TimeGapTextBox.Text);*/
+            Common.GetAllFreeRoomsByDateAndTime(databaseManager,"2019-05-01", "12:00", 30);
+            //string cpy = date;
 
-            foreach (Room room in roomsAvailable)
-            {
-                RoomAvailableComboBox.Items.Add(room);
-            }
+            
 
+           
         }
 
         private void LoadAppointmentButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +83,7 @@ namespace HospitalMS_UWP
         {
             Appointment appointment = AppointmentDataGrid.SelectedItem as Appointment;
             appointment.EditAppointment(databaseManager);
+            GetAllAppointmentsByDoctorId();
         }
     }
 }
