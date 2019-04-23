@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HospitalMS_UWP.Helpers;
+using HospitalMS_UWP.Models.Authentication;
+using HospitalMS_UWP.Models.Database;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +26,9 @@ namespace HospitalMS_UWP
     public sealed partial class IntroPage : Page
     {
         Controller controller;
+        DatabaseManager databaseManager = new DatabaseManager();
+        EncryptionHelper encryptionHelper = new EncryptionHelper();
+
         public IntroPage()
         {
             this.InitializeComponent();
@@ -31,8 +37,16 @@ namespace HospitalMS_UWP
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            WorkFrame.Navigate(typeof(MainPage)); 
+            string login = LoginTextBox.Text;
+            string password = InPasswordBox.Password;
+            
+            if (Credential.SignIn(databaseManager, encryptionHelper, new SignInRequest() { Login = login, Password = password }).Message == "Authenticated")
+            {
+                WorkFrame.Navigate(typeof(MainPage));
+            }
         }
+    
+            
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {

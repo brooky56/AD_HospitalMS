@@ -27,7 +27,7 @@ namespace HospitalMS_UWP
         public bool CheckPasswordBox(PasswordBox passwordBox)
         {
             bool flag = false;
-            if (!System.Text.RegularExpressions.Regex.IsMatch(passwordBox.Password, "[a-zA-Z]+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(passwordBox.Password, "^[a-zA-Z]\\d"))
             {
                 flag = true;
             }

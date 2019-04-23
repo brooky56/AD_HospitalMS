@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:Name="AdminDataPage"
     x:Class="HospitalMS_UWP.DataGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,19 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="Auto">
 
-    <Grid x:Name="MainGrid" Background="White">
-        <controls:DataGrid x:Name="WorkDataGrid" HorizontalAlignment="Left" Loaded="DataGrid_Loaded" Margin="210,0,0,0" VerticalAlignment="Center" Height="369" Width="914" Background="#FF80BC00" SelectionChanged="WorkDataGrid_SelectionChanged"/>
-        <ComboBox x:Name="UserTypeBox" HorizontalAlignment="Center" VerticalAlignment="Top" Height="59" Width="314" Margin="0,53,0,0" Background="#FF80BC00">
+    <Grid x:Name="MainGrid" Background="#B280BC00">
+        <controls:DataGrid x:Name="WorkDataGrid" HorizontalAlignment="Left"  Margin="95,117,0,0" VerticalAlignment="Top" Height="549" Width="1091" Background="#FF80BC00" Loaded="WorkDataGrid_Loaded"/>
+        <ComboBox x:Name="UserTypeBox" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="354" Margin="95,41,0,0" Background="#FF80BC00" BorderBrush="#B280BC00">
             <ComboBoxItem Content="Doctors"/>
             <ComboBoxItem Content="Pharmacists"/>
             <ComboBoxItem Content="Patients"/>
             <ComboBoxItem Content="All users"/>
             <ComboBoxItem Content="Nurses"/>
             <ComboBoxItem Content="Laboratorists"/>
-            <ComboBoxItem Content="Reseptionist"/>
+            <ComboBoxItem Content="Reseptionists"/>
             <ComboBoxItem Content="Accountants"/>
         </ComboBox>
+        <Button x:Name="ShowButton" Content="Show" HorizontalAlignment="Left" Margin="468,54,0,0" VerticalAlignment="Top" Width="172" Background="#FF80BC00" Foreground="White" Click="ShowButton_Click"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="650,54,0,0" VerticalAlignment="Top" Width="172" Background="#FF80BC00" Foreground="White" Click="UpdateButton_Click" />
     </Grid>
 </Page>

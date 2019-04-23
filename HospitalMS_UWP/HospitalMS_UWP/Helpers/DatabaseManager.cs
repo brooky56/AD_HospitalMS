@@ -11,7 +11,7 @@ namespace HospitalMS_UWP.Helpers
             DatabaseSharedSetting setting = new DatabaseSharedSetting();
             setting.Credential.Password = "root";
             setting.Credential.UserName = "root";
-            setting.Database = "test";
+            setting.Database = "hospital";
             setting.Url = "http://95.213.191.243:8529";
             Database = new ArangoDatabase(setting);
         }
