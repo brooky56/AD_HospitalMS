@@ -7,6 +7,8 @@ using System.Linq;
 namespace HospitalMS_UWP.Models.Database
 {
     [CollectionProperty(CollectionName = "Appointment", Naming = NamingConvention.UnChanged)]
+    
+
     public class Appointment : EdgeDatabaseModel
     {
         public string Date { get; set; }
@@ -53,6 +55,10 @@ namespace HospitalMS_UWP.Models.Database
         public static IEnumerable<Appointment> GetAllAppointments(DatabaseManager databaseManager)
         {
             return databaseManager.Database.Query<Appointment>();
+        }
+
+        public static IEnumerable<Appointment> GetAppointmentsByDoctorId(DatabaseManager databaseManager, string key ) {
+            return databaseManager.Database.Query<Appointment>().Where(a => a.To == "User/"+key);
         }
 
         public static IEnumerable<Appointment> GetAppointment(DatabaseManager databaseManager, string key)

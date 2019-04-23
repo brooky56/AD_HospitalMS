@@ -28,6 +28,7 @@ namespace HospitalMS_UWP
         Controller controller;
         DatabaseManager databaseManager = new DatabaseManager();
         EncryptionHelper encryptionHelper = new EncryptionHelper();
+      
 
         public IntroPage()
         {
@@ -39,10 +40,22 @@ namespace HospitalMS_UWP
         {
             string login = LoginTextBox.Text;
             string password = InPasswordBox.Password;
-            
+            User user = null;
+            if (login != "root")
+            {
+                user = User.GetUser(databaseManager, login);
+            }
+                     
             if (Credential.SignIn(databaseManager, encryptionHelper, new SignInRequest() { Login = login, Password = password }).Message == "Authenticated")
             {
-                WorkFrame.Navigate(typeof(MainPage));
+                if (login == "root")
+                {
+                    WorkFrame.Navigate(typeof(MainPage), null);
+                } else if (login != "root")
+                {
+                    WorkFrame.Navigate(typeof(MainPage), user);
+                }
+                
             }
         }
     

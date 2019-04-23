@@ -90,9 +90,9 @@
             <SplitView.Pane>
                 <Grid x:Name="SideGrid" Background="Green">
                     <StackPanel x:Name="menuStackPanel" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                        <RadioButton x:Name="mainAdminPageButton" Content="Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE700;" Width="320" Click="MainAdminPageButton_Click" />
-                        <RadioButton x:Name="monitorHospitalPageButton" Content="Monitor services" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE975;" Click="MonitorHospitalPageButton_Click" Width="320" />
-                        <RadioButton x:Name="manageAccountPageButton" Content="Manage accounts" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE716;" Width="320" Click="ManageAccountPageButton_Click" />
+                        <RadioButton x:Name="mainAdminPageButton" Content="Admin Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE700;" Width="320" Click="MainAdminPageButton_Click" />
+                        <RadioButton x:Name="monitorHospitalPageButton" Content="Doctor Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC07;" Click="MonitorHospitalPageButton_Click" Width="320" />
+                        <RadioButton x:Name="manageAccountPageButton" Content="Monitor services" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC51;" Width="320" Click="ManageAccountPageButton_Click" />
                         <RadioButton x:Name="dataManageButton" Content="Manage data" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE83B;" Width="320" Click="DataManageButton_Click" />
                     </StackPanel>
                 </Grid>

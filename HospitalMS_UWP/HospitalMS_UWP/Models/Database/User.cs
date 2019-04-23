@@ -131,9 +131,9 @@ namespace HospitalMS_UWP.Models.Database
             return databaseManager.Database.Query<User>();
         }
 
-        public static IEnumerable<User> GetUser(DatabaseManager databaseManager, string key)
+        public static User GetUser(DatabaseManager databaseManager, string key)
         {
-            return databaseManager.Database.Query<User>().Where(s => s.Key == key);
+            return databaseManager.Database.Query<User>().Where(s => s.Key == key).FirstOrDefault();
         }
     }
 }

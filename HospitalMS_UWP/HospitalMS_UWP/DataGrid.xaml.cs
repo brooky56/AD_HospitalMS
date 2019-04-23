@@ -249,7 +249,7 @@ namespace HospitalMS_UWP
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             User user = WorkDataGrid.SelectedItem as User;
-            User.EditUser(databaseManager, user);
+            User.EditUser(user, databaseManager);
         }
     }
 }

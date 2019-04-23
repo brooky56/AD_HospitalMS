@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalMS_UWP.Models.Database;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,12 +23,35 @@ namespace HospitalMS_UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        User user = null;
         public MainPage()
         {
             this.InitializeComponent();
-            workFrame.Navigate(typeof(AdminPage));
+            
+            
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+                user = e.Parameter as User;
 
+
+            if (user == null)
+            {
+                workFrame.Navigate(typeof(DataGrid));
+                monitorHospitalPageButton.IsEnabled = false;
+                manageAccountPageButton.IsEnabled = false;
+                dataManageButton.IsEnabled = false;
+            }
+            else if (user.UserType == UserType.DOCTOR)
+            {
+                workFrame.Navigate(typeof(MonitorPage), user);
+                mainAdminPageButton.IsEnabled = false;
+                manageAccountPageButton.IsEnabled = false;
+                dataManageButton.IsEnabled = false;
+            }
+
+        }
         private void MonitorHospitalPageButton_Click(object sender, RoutedEventArgs e)
         {
             workFrame.Navigate(typeof(MonitorPage));
@@ -37,12 +61,12 @@ namespace HospitalMS_UWP
         private void MainAdminPageButton_Click(object sender, RoutedEventArgs e)
         {
             HandleSplitView(mainAdminPageButton);
-            workFrame.Navigate(typeof(AdminPage));
+            workFrame.Navigate(typeof(DataGrid));
         }
 
         private void ManageAccountPageButton_Click(object sender, RoutedEventArgs e)
         {
-            workFrame.Navigate(typeof(DataGrid));
+            workFrame.Navigate(typeof(AdminPage));
             HandleSplitView(manageAccountPageButton);
         }
 
