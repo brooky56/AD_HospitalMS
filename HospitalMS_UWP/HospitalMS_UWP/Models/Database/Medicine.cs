@@ -58,5 +58,15 @@ namespace HospitalMS_UWP.Models.Database
         {
             return databaseManager.Database.Query<Medicine>().Where(s => s.Key == key);
         }
+
+        public static MessageResponse DeleteMedicine(DatabaseManager databaseManager, string key)
+        {
+            if (!IsInDB(databaseManager, key))
+            {
+                return new MessageResponse("There is no such medicine");
+            }
+            databaseManager.Database.RemoveById<Medicine>(key);
+            return new MessageResponse("Medicine removed");
+        }
     }
 }
