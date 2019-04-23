@@ -1,4 +1,5 @@
-﻿using HospitalMS_UWP.Helpers;
+﻿using ArangoDB.Client;
+using HospitalMS_UWP.Helpers;
 using HospitalMS_UWP.Models.Database;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,16 @@ namespace HospitalMS_UWP
             string date = data.Substring(0,k);
             string time = data.Substring(k+1);
             int minutesgap = Int32.Parse(TimeGapTextBox.Text);*/
-            Common.GetAllFreeRoomsByDateAndTime(databaseManager,"2019-05-01", "12:00", 30);
+            
+            try
+            {
+                Common.GetAllFreeRoomsByDateAndTime(databaseManager, "2019-05-01", "12:00", 30);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            
             //string cpy = date;
 
             
