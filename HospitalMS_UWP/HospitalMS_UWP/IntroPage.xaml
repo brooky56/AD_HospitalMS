@@ -9,7 +9,7 @@
     Background="White" Height="Auto">
     <Frame x:Name="WorkFrame">
         <Grid x:Name="WorkGrid" Background="#FF80BC00" Margin="0,0,0,0">
-            <StackPanel x:Name="SignInStackPanel" Margin="389,292,389,46" Visibility="Visible" HorizontalAlignment="Stretch">
+            <StackPanel x:Name="SignInStackPanel" Margin="389,292,389,46" Visibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <TextBlock x:Name="LoginTextBlock" Margin="5,5,5,0" Text="Login" TextWrapping="Wrap" FontSize="20" Foreground="White"  />
                 <TextBox x:Name="LoginTextBox" IsSpellCheckEnabled="True" PlaceholderText="Type your Login" Margin="5,5,5,0" Text=""  SelectionHighlightColor="#FF80BC00" BorderBrush="#FF80BC00" TextChanged="LoginTextBox_TextChanged" />
                 <TextBlock x:Name="InPassword" Margin="5,5,5,0" Text="Password" TextWrapping="Wrap" Height="30" FontSize="20" Foreground="White" />
@@ -28,6 +28,7 @@
                 <TextBox x:Name="EmailTextBox" IsSpellCheckEnabled="True" PlaceholderText="Type your Email" Margin="5,5,5,0" Text="" SelectionHighlightColor="#FF80BC00" BorderBrush="#FF80BC00" TextChanged="EmailTextBox_TextChanged" />
                 <Button x:Name="RegButton" Content="Register" HorizontalAlignment="Stretch" Margin="5,5,5,0" VerticalAlignment="Stretch" Background="#FF80BC00" Foreground="White" FontSize="16" UseSystemFocusVisuals="True" RequestedTheme="Dark" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Click="RegButton_Click"/>
             </StackPanel>
+            <Image HorizontalAlignment="Center" Height="205" Margin="0,49,0,0" VerticalAlignment="Top" Width="206" Source="/Assets/new_white.png" FocusVisualSecondaryBrush="#4CFFFFFF" FocusVisualPrimaryBrush="White"/>
         </Grid>
     </Frame>
 </Page>

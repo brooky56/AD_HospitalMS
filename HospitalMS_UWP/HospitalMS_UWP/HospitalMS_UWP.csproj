@@ -178,11 +178,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\logo.scale-100.png" />
     <Content Include="Assets\logo.scale-125.png" />
     <Content Include="Assets\logo.scale-150.png" />
     <Content Include="Assets\logo.scale-200.png" />
     <Content Include="Assets\logo.scale-400.png" />
+    <Content Include="Assets\new.png" />
     <Content Include="Assets\NewScreen.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\NewScreen.altform-unplated_targetsize-24.png" />
     <Content Include="Assets\NewScreen.altform-unplated_targetsize-256.png" />
@@ -198,6 +204,7 @@
     <Content Include="Assets\NewScreen.targetsize-256.png" />
     <Content Include="Assets\NewScreen.targetsize-32.png" />
     <Content Include="Assets\NewScreen.targetsize-48.png" />
+    <Content Include="Assets\new_white.png" />
     <Content Include="Assets\ScreenLog.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\ScreenLog.altform-unplated_targetsize-24.png" />
     <Content Include="Assets\ScreenLog.altform-unplated_targetsize-256.png" />
@@ -228,6 +235,19 @@
     <Content Include="Assets\ScreenLogo.targetsize-256.png" />
     <Content Include="Assets\ScreenLogo.targetsize-32.png" />
     <Content Include="Assets\ScreenLogo.targetsize-48.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
