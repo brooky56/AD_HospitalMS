@@ -150,7 +150,6 @@
     <Compile Include="Models\Authentication\SignInRequest.cs" />
     <Compile Include="Models\Authentication\SignUpRequest.cs" />
     <Compile Include="Models\Database\Appointment.cs" />
-    <Compile Include="Models\Database\Common.cs" />
     <Compile Include="Models\Database\Credential.cs" />
     <Compile Include="Models\Database\DatabaseModel.cs" />
     <Compile Include="Models\Database\Doctor.cs" />
@@ -169,14 +168,66 @@
       <DependentUpon>MonitorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAddPanel.xaml.cs">
+      <DependentUpon>TestAddPanel.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="HospitalMS_UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\logo.scale-100.png" />
+    <Content Include="Assets\logo.scale-125.png" />
+    <Content Include="Assets\logo.scale-150.png" />
+    <Content Include="Assets\logo.scale-200.png" />
+    <Content Include="Assets\logo.scale-400.png" />
+    <Content Include="Assets\NewScreen.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\NewScreen.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\NewScreen.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\NewScreen.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\NewScreen.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\NewScreen.scale-100.png" />
+    <Content Include="Assets\NewScreen.scale-125.png" />
+    <Content Include="Assets\NewScreen.scale-150.png" />
+    <Content Include="Assets\NewScreen.scale-200.png" />
+    <Content Include="Assets\NewScreen.scale-400.png" />
+    <Content Include="Assets\NewScreen.targetsize-16.png" />
+    <Content Include="Assets\NewScreen.targetsize-24.png" />
+    <Content Include="Assets\NewScreen.targetsize-256.png" />
+    <Content Include="Assets\NewScreen.targetsize-32.png" />
+    <Content Include="Assets\NewScreen.targetsize-48.png" />
+    <Content Include="Assets\ScreenLog.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\ScreenLog.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\ScreenLog.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\ScreenLog.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\ScreenLog.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\ScreenLog.scale-100.png" />
+    <Content Include="Assets\ScreenLog.scale-125.png" />
+    <Content Include="Assets\ScreenLog.scale-150.png" />
+    <Content Include="Assets\ScreenLog.scale-200.png" />
+    <Content Include="Assets\ScreenLog.scale-400.png" />
+    <Content Include="Assets\ScreenLog.targetsize-16.png" />
+    <Content Include="Assets\ScreenLog.targetsize-24.png" />
+    <Content Include="Assets\ScreenLog.targetsize-256.png" />
+    <Content Include="Assets\ScreenLog.targetsize-32.png" />
+    <Content Include="Assets\ScreenLog.targetsize-48.png" />
+    <Content Include="Assets\ScreenLogo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\ScreenLogo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\ScreenLogo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\ScreenLogo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\ScreenLogo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\ScreenLogo.scale-100.png" />
+    <Content Include="Assets\ScreenLogo.scale-125.png" />
+    <Content Include="Assets\ScreenLogo.scale-150.png" />
+    <Content Include="Assets\ScreenLogo.scale-200.png" />
+    <Content Include="Assets\ScreenLogo.scale-400.png" />
+    <Content Include="Assets\ScreenLogo.targetsize-16.png" />
+    <Content Include="Assets\ScreenLogo.targetsize-24.png" />
+    <Content Include="Assets\ScreenLogo.targetsize-256.png" />
+    <Content Include="Assets\ScreenLogo.targetsize-32.png" />
+    <Content Include="Assets\ScreenLogo.targetsize-48.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -216,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MonitorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestAddPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

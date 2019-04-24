@@ -1,20 +1,10 @@
-﻿using ArangoDB.Client;
-using HospitalMS_UWP.Helpers;
+﻿using HospitalMS_UWP.Helpers;
 using HospitalMS_UWP.Models.Database;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
@@ -31,6 +21,14 @@ namespace HospitalMS_UWP
         public MonitorPage()
         {
             this.InitializeComponent();
+
+            List<string> vs = new List<string>();
+
+            foreach (TestType testType in TestType.GetAllTestTypes(databaseManager))
+            {
+                vs.Add(testType.Title);
+            }
+            TestTypeAvailableComboBox.ItemsSource = vs;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -41,7 +39,7 @@ namespace HospitalMS_UWP
 
         private void AppointmentDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
         private void GetAllAppointmentsByDoctorId()
         {
@@ -62,26 +60,22 @@ namespace HospitalMS_UWP
 
         private void ShowFreeRoomsButton_Click(object sender, RoutedEventArgs e)
         {
-            /*string data = DateRoomTextBox.Text;
+            string data = DateRoomTextBox.Text;
             int k = data.IndexOf(" ");
-            string date = data.Substring(0,k);
-            string time = data.Substring(k+1);
-            int minutesgap = Int32.Parse(TimeGapTextBox.Text);*/
-            
-            try
-            {
-                Common.GetAllFreeRoomsByDateAndTime(databaseManager, "2019-05-01", "12:00", 30);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
-            
-            //string cpy = date;
+            string date = data.Substring(0, k);
+            string time = data.Substring(k + 1);
+            int minutesgap = Int32.Parse(TimeGapTextBox.Text);
 
-            
+            List<Room> rooms = Room.GetAllFreeRoomsByDateAndTime(databaseManager, date, time, minutesgap);
+            List<string> roomsNames = new List<string>();
 
-           
+            foreach (Room room in rooms)
+            {
+                roomsNames.Add(room.Key + " : " + room.Type);
+
+            }
+            RoomAvailableComboBox.ItemsSource = roomsNames;
+
         }
 
         private void LoadAppointmentButton_Click(object sender, RoutedEventArgs e)
@@ -94,6 +88,35 @@ namespace HospitalMS_UWP
             Appointment appointment = AppointmentDataGrid.SelectedItem as Appointment;
             appointment.EditAppointment(databaseManager);
             GetAllAppointmentsByDoctorId();
+        }
+
+        private void AddTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedTest = TestTypeAvailableComboBox.SelectedItem.ToString();
+
+            Appointment appointment = AppointmentDataGrid.SelectedItem as Appointment;
+
+            List<TestType> testTypes = TestType.GetAllTestTypes(databaseManager);
+
+            
+
+            foreach (TestType testType in testTypes)
+            {
+                if (selectedTest == testType.Title)
+                {
+                    Test test = new Test()
+                    {
+                        AppointmentKey = appointment.Key,
+                        DateTime = appointment.Date + " " + appointment.Time,
+                        From = appointment.From,
+                        To = "TestType/" + testType.Key,
+                        ReportURL = appointment.ReportURL                        
+                     };
+
+                    test.AddTest(databaseManager);
+                }
+            }
+            
         }
     }
 }

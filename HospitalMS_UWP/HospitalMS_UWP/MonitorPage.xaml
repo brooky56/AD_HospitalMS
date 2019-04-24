@@ -11,6 +11,7 @@
 
     <Grid x:Name="MainGrid" Background="#B280BC00">
         <ComboBox x:Name="RoomAvailableComboBox" HorizontalAlignment="Left" Margin="38,245,0,0" VerticalAlignment="Top" Height="40" Width="265" Background="#FF80BC00"/>
+        <ComboBox x:Name="TestTypeAvailableComboBox" HorizontalAlignment="Left" Margin="38,413,0,0" VerticalAlignment="Top" Height="40" Width="265" Background="#FF80BC00"/>
         <Custom:DataGrid x:Name="AppointmentDataGrid" Margin="363,125,55,0" VerticalAlignment="Top" Height="511" Background="#FF80BC00" Loaded="AppointmentDataGrid_Loaded"/>
         <TextBlock x:Name="DateRoomTextBlock" HorizontalAlignment="Left" Margin="38,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="264" Foreground="White" FontSize="20"><Run Text="Date/Room:"/><LineBreak/><Run Text="yyyy-mm-dd hh:mm"/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="AppointmentTextBlock" HorizontalAlignment="Left" Margin="363,93,0,0" Text="Appointments" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="264" Foreground="White" FontSize="20"/>
@@ -19,5 +20,7 @@
         <Button x:Name="ShowFreeRoomsButton" Content="Show free rooms" HorizontalAlignment="Left" Margin="38,290,0,0" VerticalAlignment="Top" Width="265" Background="#FF80BC00" Foreground="White" Height="40" FontSize="20" Click="ShowFreeRoomsButton_Click"/>
         <Button x:Name="LoadAppointmentButton" Content="Load Appointment" HorizontalAlignment="Left" Margin="363,641,0,0" VerticalAlignment="Top" Width="211" Height="40" Foreground="White" Background="#FF80BC00" Click="LoadAppointmentButton_Click"/>
         <Button x:Name="SaveChangesButton" Content="Save changes" HorizontalAlignment="Left" Margin="583,641,0,0" VerticalAlignment="Top" Width="211" Height="40" Foreground="White" Background="#FF80BC00" Click="SaveChangesButton_Click" />
+        <TextBlock HorizontalAlignment="Left" Margin="38,381,0,0" Text="Test type" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Height="30" FontSize="20"/>
+        <Button x:Name="AddTestButton" Content="Add test" HorizontalAlignment="Left" Margin="38,458,0,0" VerticalAlignment="Top" Width="265" Background="#FF80BC00" Foreground="White" Height="40" FontSize="20" Click="AddTestButton_Click"/>
     </Grid>
 </Page>

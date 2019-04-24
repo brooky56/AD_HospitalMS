@@ -71,9 +71,10 @@ namespace HospitalMS_UWP.Models.Database
 
         public static List<Appointment> GetApprovedAppointmentsByDateAndTime(DatabaseManager databaseManager, string date, string time, int minutesgap)
         {
-            DateTime datetime = Common.GetTimeFromString(time);
+            long millisecs = minutesgap * 60 * 1000;
             return databaseManager.Database.Query<Appointment>().
-                Where(s => s.IsApproved && s.Date == date && Math.Abs((datetime - Common.GetTimeFromString(s.Time)).Minutes) <= minutesgap).ToList();
+                Where(s => s.IsApproved && s.Date == date &&
+                AQL.Abs(AQL.DateTimestamp(time) - AQL.DateTimestamp(s.Time)) < millisecs).ToList();
         }
     }
 }
