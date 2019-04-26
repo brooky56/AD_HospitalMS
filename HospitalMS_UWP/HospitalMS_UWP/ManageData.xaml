@@ -8,5 +8,5 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="Auto">
 
-    <Grid Background="Yellow"/>
+    <Grid x:Name="MainGrid" Background="#B280BC00"/>
 </Page>

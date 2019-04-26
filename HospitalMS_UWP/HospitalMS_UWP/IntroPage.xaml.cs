@@ -35,7 +35,12 @@ namespace HospitalMS_UWP
             this.InitializeComponent();
             controller = new Controller();
         }
-
+        List<RadioButton> radioButtons = null;
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+                radioButtons = e.Parameter as List<RadioButton>;                
+        }
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
             string login = LoginTextBox.Text;
@@ -50,10 +55,33 @@ namespace HospitalMS_UWP
             {
                 if (login == "root")
                 {
-                    WorkFrame.Navigate(typeof(MainPage), null);
+                    if (radioButtons != null)
+                    {
+                        foreach (RadioButton radio in radioButtons)
+                        {
+                            if (radio.Content.ToString() == "Admin Profile")
+                            {
+                                radio.Visibility = Visibility.Visible;
+                                radio.IsEnabled = true;
+                            }
+                        }
+                    }
+                    WorkFrame.Navigate(typeof(DataGrid), radioButtons);
+                    
                 } else if (login != "root")
                 {
-                    WorkFrame.Navigate(typeof(MainPage), user);
+                    if (radioButtons != null)
+                    {
+                        foreach (RadioButton radio in radioButtons)
+                        {
+                            if (radio.Content.ToString() == "Doctor Profile")
+                            {
+                                radio.Visibility = Visibility.Visible;
+                                radio.IsEnabled = true;
+                            }
+                        }
+                    }
+                    WorkFrame.Navigate(typeof(MonitorPage), user);
                 }
                 
             }

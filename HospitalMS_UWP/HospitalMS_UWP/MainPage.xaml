@@ -84,22 +84,23 @@
             </Setter>
         </Style>
     </Page.Resources>
-
-    <Grid Background="{ThemeResource ApplicationForegroundThemeBrush}">
-        <SplitView x:Name="MainSplitView" IsPaneOpen="False" Margin="0" DisplayMode="CompactOverlay">
-            <SplitView.Pane>
-                <Grid x:Name="SideGrid" Background="Green">
-                    <StackPanel x:Name="menuStackPanel" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                        <RadioButton x:Name="mainAdminPageButton" Content="Admin Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE700;" Width="320" Click="MainAdminPageButton_Click" />
-                        <RadioButton x:Name="monitorHospitalPageButton" Content="Doctor Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC07;" Click="MonitorHospitalPageButton_Click" Width="320" />
-                        <RadioButton x:Name="manageAccountPageButton" Content="Monitor services" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC51;" Width="320" Click="ManageAccountPageButton_Click" />
-                        <RadioButton x:Name="dataManageButton" Content="Manage data" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE83B;" Width="320" Click="DataManageButton_Click" />
-                    </StackPanel>
-                </Grid>
-            </SplitView.Pane>
-            <SplitView.Content>
-                <Frame x:Name="workFrame" Background="White"/>            
-            </SplitView.Content>
-        </SplitView>
-    </Grid>
+    <Frame x:Name="BackFrame" >
+        <Grid Background="{ThemeResource ApplicationForegroundThemeBrush}">
+            <SplitView x:Name="MainSplitView" IsPaneOpen="False" Margin="0" DisplayMode="CompactOverlay">
+                <SplitView.Pane>
+                    <Grid x:Name="SideGrid" Background="Green">
+                        <StackPanel x:Name="menuStackPanel" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                            <RadioButton x:Name="mainAdminPageButton" Content="Admin Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE700;" Width="320" Click="MainAdminPageButton_Click" />
+                            <RadioButton x:Name="monitorHospitalPageButton" Content="Doctor Profile" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC07;" Click="MonitorHospitalPageButton_Click" Width="320" />
+                            <RadioButton x:Name="manageAccountPageButton" Content="Monitor services" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xEC51;" Width="320" Click="ManageAccountPageButton_Click" />
+                            <RadioButton x:Name="dataManageButton" Content="Manage data" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource HamburguerRadioButtonStyle}" Tag="&#xE83B;" Width="320" Click="DataManageButton_Click" />
+                        </StackPanel>
+                    </Grid>
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Frame x:Name="workFrame" Background="White"/>
+                </SplitView.Content>
+            </SplitView>
+        </Grid>
+    </Frame>
 </Page>

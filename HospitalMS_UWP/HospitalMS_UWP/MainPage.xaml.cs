@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,27 +29,48 @@ namespace HospitalMS_UWP
         {
             this.InitializeComponent();
             
-            
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null)
+
+            if (e.Parameter != null && user != null)
+            {
                 user = e.Parameter as User;
+                if (user.UserType == UserType.DOCTOR && user != null)
+                {
+                    workFrame.Navigate(typeof(MonitorPage), user);
+                    mainAdminPageButton.IsEnabled = false;
+                    mainAdminPageButton.Visibility = Visibility.Collapsed;
+                    manageAccountPageButton.IsEnabled = false;
+                    manageAccountPageButton.Visibility = Visibility.Collapsed;
+                    dataManageButton.IsEnabled = false;
+                    dataManageButton.Visibility = Visibility.Collapsed;
 
+                }
+            }
 
-            if (user == null)
+            if (e.Parameter as string == "root")
             {
                 workFrame.Navigate(typeof(DataGrid));
                 monitorHospitalPageButton.IsEnabled = false;
+                monitorHospitalPageButton.Visibility = Visibility.Collapsed;
                 manageAccountPageButton.IsEnabled = false;
+                manageAccountPageButton.Visibility = Visibility.Collapsed;
                 dataManageButton.IsEnabled = false;
+                dataManageButton.Visibility = Visibility.Collapsed;
             }
-            else if (user.UserType == UserType.DOCTOR)
+            else
             {
-                workFrame.Navigate(typeof(MonitorPage), user);
-                mainAdminPageButton.IsEnabled = false;
-                manageAccountPageButton.IsEnabled = false;
-                dataManageButton.IsEnabled = false;
+                List<RadioButton> buttons = new List<RadioButton>();
+                buttons.Add(mainAdminPageButton);
+                buttons.Add(manageAccountPageButton);
+                buttons.Add(dataManageButton);
+                buttons.Add(monitorHospitalPageButton);
+                workFrame.Navigate(typeof(IntroPage),buttons);
+                mainAdminPageButton.Visibility = Visibility.Collapsed;
+                manageAccountPageButton.Visibility = Visibility.Collapsed;
+                dataManageButton.Visibility = Visibility.Collapsed;
+                monitorHospitalPageButton.Visibility = Visibility.Collapsed;
             }
 
         }

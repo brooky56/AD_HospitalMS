@@ -26,10 +26,23 @@ namespace HospitalMS_UWP
     public sealed partial class DataGrid : Page
     {
         DatabaseManager databaseManager = new DatabaseManager();
-        
+        List<RadioButton> radioButtons = null;
         public DataGrid()
         {
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                radioButtons = e.Parameter as List<RadioButton>;
+
+                foreach (RadioButton radio in radioButtons)
+                {
+                    radio.Visibility = Visibility.Visible;
+                    radio.IsEnabled = true;
+                }
+            }
         }
 
         private void ShowButton_Click(object sender, RoutedEventArgs e)
@@ -104,7 +117,16 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+            
 
             foreach (User user in result)
             {
@@ -123,7 +145,16 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+            
 
             foreach (User user in result)
             {
@@ -145,7 +176,16 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+            
 
             foreach (User user in result)
             {
@@ -168,7 +208,18 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+
+            
 
             foreach (User user in result)
             {
@@ -191,7 +242,18 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+
+            
 
             foreach (User user in result)
             {
@@ -214,7 +276,16 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+           
 
             foreach (User user in result)
             {
@@ -235,7 +306,18 @@ namespace HospitalMS_UWP
             List<User> result = new List<User>();
             result.Clear();
 
-            result = User.GetAllUsers(databaseManager).ToList();
+
+            try
+            {
+                result = User.GetAllUsers(databaseManager).ToList();
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+
+            
             
             WorkDataGrid.ItemsSource = result;
 
@@ -248,8 +330,22 @@ namespace HospitalMS_UWP
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            User user = WorkDataGrid.SelectedItem as User;
-            User.EditUser(user, databaseManager);
+            try
+            {
+                User user = WorkDataGrid.SelectedItem as User;
+                User.EditUser(user, databaseManager);
+            }
+            catch (Exception ex)
+            {
+                ContentDialog contentDialog = new ContentDialog();
+                contentDialog.Title = ex.Message;
+            }
+            
+        }
+
+        private void BackButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(IntroPage));
         }
     }
 }

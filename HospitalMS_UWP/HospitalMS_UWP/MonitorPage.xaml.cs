@@ -18,6 +18,8 @@ namespace HospitalMS_UWP
     {
         DatabaseManager databaseManager = new DatabaseManager();
         User user = null;
+       
+        
         public MonitorPage()
         {
             this.InitializeComponent();
@@ -98,7 +100,7 @@ namespace HospitalMS_UWP
 
             List<TestType> testTypes = TestType.GetAllTestTypes(databaseManager);
 
-            
+
 
             foreach (TestType testType in testTypes)
             {
@@ -110,13 +112,18 @@ namespace HospitalMS_UWP
                         DateTime = appointment.Date + " " + appointment.Time,
                         From = appointment.From,
                         To = "TestType/" + testType.Key,
-                        ReportURL = appointment.ReportURL                        
-                     };
+                        ReportURL = appointment.ReportURL
+                    };
 
                     test.AddTest(databaseManager);
                 }
             }
-            
+
+        }
+
+        private void BackButton_Checked(object sender, RoutedEventArgs e)
+        {
+            WorkFrame.Navigate(typeof(IntroPage));
         }
     }
 }
